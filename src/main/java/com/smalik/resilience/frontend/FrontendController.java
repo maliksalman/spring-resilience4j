@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-@Profile("frontend")
+@Profile({ "frontend", "cb-frontend" })
 @RestController
 public class FrontendController {
 

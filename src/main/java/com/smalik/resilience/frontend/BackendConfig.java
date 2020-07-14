@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
-@Profile("frontend")
+@Profile({ "frontend", "cb-frontend" })
 @Configuration
 public class BackendConfig
 {
