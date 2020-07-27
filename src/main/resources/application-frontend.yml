@@ -3,5 +3,16 @@ server:
 
 backend:
   baseUrl: http://localhost:9090
-  connectionTimeoutMillis: 50
-  readTimeoutMillis: 150
+  connectionTimeout: 50ms
+  readTimeout: 150ms
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      backend:
+        slidingWindowSize: 50
+        minimumNumberOfCalls: 50
+        permittedNumberOfCallsInHalfOpenState: 25
+        slidingWindowType: COUNT_BASED
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 25

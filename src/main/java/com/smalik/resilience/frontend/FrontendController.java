@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-@Profile({ "frontend", "cb-frontend" })
+@Profile("frontend")
 @RestController
 public class FrontendController {
 
@@ -18,9 +18,9 @@ public class FrontendController {
         this.service = service;
     }
 
-    @GetMapping("/frontend/wait/{maxWaitMillis}")
-    public ResponseEntity<FrontendResponse> getResponse(@PathVariable("maxWaitMillis") int maxWaitMillis) throws Exception {
-        Optional<FrontendResponse> response = service.getResponse(maxWaitMillis);
+    @GetMapping("/frontend")
+    public ResponseEntity<FrontendResponse> getResponse() {
+        Optional<FrontendResponse> response = service.getResponse();
         if (response.isPresent()) {
             return ResponseEntity.ok(response.get());
         } else {

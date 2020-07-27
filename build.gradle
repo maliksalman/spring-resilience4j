@@ -1,11 +1,11 @@
 plugins {
-	id 'org.springframework.boot' version '2.0.5.RELEASE'
+	id 'org.springframework.boot' version '2.2.8.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
 
 group = 'com.smalik'
-version = '0.0.1-SNAPSHOT'
+version = '1.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -15,6 +15,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+	implementation 'io.micrometer.prometheus:prometheus-rsocket-spring:1.0.0'
+
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
-	implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.2.0'
+	implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.5.0'
 }

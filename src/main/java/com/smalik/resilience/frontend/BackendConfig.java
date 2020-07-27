@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
-@Profile({ "frontend", "cb-frontend" })
+import java.time.Duration;
+
+@Profile("frontend")
 @Configuration
 public class BackendConfig
 {
@@ -15,13 +17,13 @@ public class BackendConfig
     public RestTemplate restTemplate(
             RestTemplateBuilder restTemplateBuilder,
             @Value("${backend.baseUrl}") String baseUrl,
-            @Value("${backend.connectionTimeoutMillis}") int connectionTimeoutMillis,
-            @Value("${backend.readTimeoutMillis:1000}") int readTimeoutMillis)
+            @Value("${backend.connectionTimeout}") Duration connectionTimeout,
+            @Value("${backend.readTimeout}") Duration readTimeout)
     {
         return restTemplateBuilder
            .rootUri(baseUrl)
-           .setConnectTimeout(connectionTimeoutMillis)
-           .setReadTimeout(readTimeoutMillis)
+           .setConnectTimeout(connectionTimeout)
+           .setReadTimeout(readTimeout)
            .build();
     }
 }
