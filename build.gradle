@@ -13,12 +13,15 @@ repositories {
 }
 
 dependencies {
+
+	// spring-boot
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+	// micrometer metrics
 	implementation 'io.micrometer:micrometer-registry-prometheus'
-	implementation 'io.micrometer.prometheus:prometheus-rsocket-spring:1.0.0'
 
+	// resilience-4j
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.5.0'
 }

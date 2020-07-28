@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 2,
-  "iteration": 1595528710565,
+  "iteration": 1595968797169,
   "links": [],
   "panels": [
     {
@@ -217,7 +217,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(resilience4j_circuitbreaker_calls_seconds_count{application=\"$application\", instance=\"$instance\", name=\"$name\"}[1m])",
+          "expr": "rate(resilience4j_circuitbreaker_calls_seconds_count{application=\"$application\", instance=\"$instance\", name=\"$name\"}[1m]) * 60",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -245,7 +245,7 @@
       },
       "yaxes": [
         {
-          "format": "ops",
+          "format": "opm",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -372,7 +372,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -391,5 +391,5 @@
   "timezone": "",
   "title": "Circuit Breakers",
   "uid": "Hxwxx67Mz",
-  "version": 7
+  "version": 3
 }
