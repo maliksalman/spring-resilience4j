@@ -20,6 +20,7 @@ dependencies {
 
 	// micrometer metrics
 	implementation 'io.micrometer:micrometer-registry-prometheus'
+	implementation 'io.micrometer.prometheus:prometheus-rsocket-spring:1.0.0'
 
 	// resilience-4j
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
