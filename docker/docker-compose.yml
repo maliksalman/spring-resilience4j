@@ -7,7 +7,9 @@ services:
     container_name: metrics-grafana
     volumes:
       - "./datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml"
+      - "./dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml"
       - "./grafana.ini:/etc/grafana/grafana.ini"
+      - "./dashboards:/var/lib/grafana/dashboards"
     ports:
     - "3131:3000"
 
