@@ -4,7 +4,6 @@ global:
   evaluation_interval: 2s
 
 scrape_configs:
-
 - job_name: 'rproxy'
   metrics_path: '/metrics/connected'
   honor_labels: true
