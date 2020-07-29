@@ -208,7 +208,7 @@
       }
     }
   ],
-  "refresh": "10s",
+  "refresh": "5s",
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
@@ -281,11 +281,12 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
+      "5s",
       "10s",
       "30s",
       "1m",
