@@ -8,9 +8,9 @@ scrape_configs:
   metrics_path: '/actuator/prometheus'
   honor_labels: true
   static_configs:
-    - targets: ['salmac.lan:8080']
+    - targets: ['thinkstation.lan:8080']
 - job_name: 'backend'
   metrics_path: '/actuator/prometheus'
   honor_labels: true
   static_configs:
-    - targets: ['salmac.lan:9090']
+    - targets: ['thinkstation.lan:9090']
