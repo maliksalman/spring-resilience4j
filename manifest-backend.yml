@@ -1,0 +1,11 @@
+---
+applications:
+  - name: smalik-observability-backend
+    memory: 1G
+    path: build/libs/observability-talks-1.0.jar
+    buildpacks:
+      - java_buildpack
+    env:
+      MANAGEMENT_METRICS_EXPORT_PROMETHEUS_RSOCKET_HOST: home.salmanmalik.me
+      SPRING_PROFILES_ACTIVE: backend
+      APP_NAME: backend

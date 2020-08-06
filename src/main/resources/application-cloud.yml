@@ -1,0 +1,4 @@
+management:
+  metrics:
+    tags:
+      instance: ${APP_NAME}-${CF_INSTANCE_INDEX}
