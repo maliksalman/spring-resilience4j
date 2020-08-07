@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  labels:
+    tier: monitoring
+    app: prometheus
+spec:
+  clusterIP: None
+  selector:
+    tier: monitoring
+    app: prometheus
+  ports:
+    - name: prometheus
+      port: 9090
+      targetPort: prometheus

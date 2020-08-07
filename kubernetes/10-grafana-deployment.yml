@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  labels:
+    tier: monitoring
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 5000
+      containers:
+        - name: grafana
+          image: grafana/grafana:6.7.2
+          ports:
+            - name: web
+              containerPort: 3000
+              protocol: TCP
+          volumeMounts:
+            - name: grafana-config-volume
+              mountPath: /etc/grafana/provisioning/datasources/datasource.yaml
+              subPath: datasource.yaml
+              readOnly: true
+            - name: grafana-config-volume
+              mountPath: /etc/grafana/provisioning/dashboards/dashboards.yaml
+              subPath: dashboards.yaml
+              readOnly: true
+            - name: grafana-config-volume
+              mountPath: /etc/grafana/grafana.ini
+              subPath: grafana.ini
+              readOnly: true
+            - name: grafana-dashboards-volume
+              mountPath: /var/lib/grafana/dashboards
+              readOnly: true
+          resources:
+            requests:
+              cpu: 256m
+              memory: 512Mi
+            limits:
+              cpu: 512m
+              memory: 512Mi
+      volumes:
+        - name: grafana-config-volume
+          configMap:
+            name: grafana-config
+            items:
+              - key: datasource.yaml
+                path: datasource.yaml
+              - key: dashboards.yaml
+                path: dashboards.yaml
+              - key: grafana.ini
+                path: grafana.ini
+        - name: grafana-dashboards-volume
+          configMap:
+            name: grafana-dashboards

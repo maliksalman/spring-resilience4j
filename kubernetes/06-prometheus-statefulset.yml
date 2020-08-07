@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: prometheus
+  labels:
+    tier: monitoring
+    app: prometheus
+spec:
+  replicas: 1
+  serviceName: prometheus
+  selector:
+    matchLabels:
+      tier: monitoring
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        tier: monitoring
+        app: prometheus
+    spec:
+      serviceAccountName: prometheus-account
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 5000
+      containers:
+        - name: prometheus
+          image: prom/prometheus:v2.20.0
+          imagePullPolicy: Always
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/data/prometheus"
+            - "--storage.tsdb.retention.time=5d"
+            - "--web.enable-lifecycle"
+            - "--storage.tsdb.no-lockfile"
+          ports:
+            - name: prometheus
+              containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config-volume
+              mountPath: /etc/prometheus
+            - name: prometheus-data-volume
+              mountPath: /data/prometheus
+          resources:
+            requests:
+              cpu: 375m
+              memory: 1Gi
+            limits:
+              cpu: 750m
+              memory: 1Gi
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            name: prometheus-config
+        - name: alertmanager-config-volume
+          configMap:
+            name: alertmanager-config
+  volumeClaimTemplates:
+    - metadata:
+        name: prometheus-data-volume
+        labels:
+          tier: monitoring
+          app: prometheus
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 512Mi
