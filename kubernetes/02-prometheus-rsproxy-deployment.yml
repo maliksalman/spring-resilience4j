@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-rsproxy
+  labels:
+    tier: monitoring
+    app: prometheus-rsproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: monitoring
+      app: prometheus-rsproxy
+  template:
+    metadata:
+      labels:
+        tier: monitoring
+        app: prometheus-rsproxy
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 5000
+      containers:
+        - name: prometheus-rsproxy
+          image: micrometermetrics/prometheus-rsocket-proxy:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - name: scrape
+              protocol: TCP
+              containerPort: 8080
+            - name: rsocket
+              protocol: TCP
+              containerPort: 7001
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
