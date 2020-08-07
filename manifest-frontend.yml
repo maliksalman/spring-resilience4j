@@ -9,4 +9,3 @@ applications:
       MANAGEMENT_METRICS_EXPORT_PROMETHEUS_RSOCKET_HOST: home.salmanmalik.me
       BACKEND_BASEURL: https://smalik-observability-backend.cfapps.io
       SPRING_PROFILES_ACTIVE: frontend
-      APP_NAME: frontend

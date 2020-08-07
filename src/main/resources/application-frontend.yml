@@ -16,3 +16,9 @@ resilience4j:
         slidingWindowType: COUNT_BASED
         waitDurationInOpenState: 5s
         failureRateThreshold: 25
+
+management:
+  metrics:
+    tags:
+      application: frontend
+      instance: frontend-${CF_INSTANCE_INDEX:0}

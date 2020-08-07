@@ -2,7 +2,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: info,health
+        include: info,health,prometheus
 
   metrics:
     export:
@@ -15,7 +15,3 @@ management:
           max-retries: 1000
           first-backoff: 10s
           max-backoff: 5m
-
-    tags:
-      application: ${APP_NAME:notset}
-      instance: ${management.metrics.tags.application}-0
