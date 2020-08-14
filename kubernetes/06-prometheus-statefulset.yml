@@ -51,9 +51,6 @@ spec:
         - name: prometheus-config-volume
           configMap:
             name: prometheus-config
-        - name: alertmanager-config-volume
-          configMap:
-            name: alertmanager-config
   volumeClaimTemplates:
     - metadata:
         name: prometheus-data-volume
